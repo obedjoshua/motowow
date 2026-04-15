@@ -1,0 +1,234 @@
+@font-face {
+    font-family: 'bold-main';
+    src: url(../../assets/fonts/gt-walsheim-bold-63a8fa5f.woff2) format('woff2');
+}
+
+@font-face {
+    font-family: 'reg-main';
+    src: url(../../assets/fonts/gt-walsheim-regular-080e0975.woff2) format('woff2');
+}
+
+@font-face {
+    font-family: 'caps-main';
+    src: url(../../assets/fonts/south-east-cn-black-1ab77116.woff2) format('woff2');
+}
+
+:root {
+    --color-dark: #0a0a0a;
+    --color-dark-2: #1a1d24;
+    --color-mid: #2e3340;
+    --color-grey: #8d96a8;
+    --color-grey-light: #b8bfcc;
+    --color-white: #f5f7fa;
+    --color-white-pure: #ffffff;
+
+    --color-primary: #22d8e4;
+    --color-primary-light: #71e5ff;
+    --color-primary-dark: #00ac9b;
+
+    --font-bold: 'bold-main', sans-serif;
+    --font-regular: 'reg-main', sans-serif;
+    --font-caps: 'caps-main', sans-serif;
+
+    --transition: 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-regular);
+    background: var(--color-white-pure);
+    overflow-x: hidden;
+}
+
+.used-hero-wrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.used-hero {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 1200px;
+    min-height: 220px;
+    margin: 20px auto;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #f5e6d8 0%, #d4eef5 50%, #c8e8f0 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: visible;
+}
+
+.used-hero__image-left {
+    position: absolute;
+    bottom: 0;
+    left: -50px;
+    top: -30px;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.used-hero__image-left img {
+    transform: scaleX(-1);
+    height: 380px;
+    width: auto;
+    display: block;
+}
+
+.used-hero__image-right {
+    position: absolute;
+    bottom: 30px;
+    right: -40px;
+    top: auto;                  
+    pointer-events: none;
+    z-index: 2;
+}
+
+.used-hero__image-right img {
+    height: 240px;              
+    width: auto;
+    display: block;
+}
+
+.used-hero__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    z-index: 3;
+    gap: 12px;
+    padding: 40px 280px;
+}
+
+.used-hero__title {
+    font-family: var(--font-caps);
+    font-size: 3.5rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    line-height: 1;
+}
+
+.used-hero__subtitle {
+    font-family: var(--font-regular);
+    font-size: 0.95rem;
+    max-width: 420px;
+    line-height: 1.5;
+}
+
+.used-hero__actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 6px;
+}
+
+.used-btn {
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-family: var(--font-bold);
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: var(--transition);
+    border: 2px solid transparent;
+}
+
+.used-btn--primary {
+    background: var(--color-dark);
+    color: var(--color-primary);
+    border-color: var(--color-dark);
+}
+
+.used-btn--primary:hover {
+    background: var(--color-dark-2);
+}
+
+.used-btn--secondary {
+    background: rgba(255, 255, 255, 0.3); 
+    color: var(--color-dark);
+    border: 2px solid rgba(0, 0, 0, 0.2);
+}
+
+.used-btn--secondary:hover {
+    border-color: var(--color-dark);
+}
+
+@media (max-width: 1024px) {
+    .used-hero__content {
+        padding: 40px 200px;
+    }
+
+    .used-hero__title {
+        font-size: 2.8rem;
+    }
+
+    .used-hero__image-left img {
+        height: 380px;
+    }
+
+    .used-hero__image-right img {
+        height: 320px;
+    }
+}
+
+@media (max-width: 768px) {
+    .used-hero {
+        min-height: 180px;
+    }
+
+    .used-hero__content {
+        padding: 30px 40px;
+    }
+
+    .used-hero__title {
+        font-size: 2.2rem;
+    }
+
+    .used-hero__image-left img {
+        height: 260px;
+    }
+
+    .used-hero__image-right img {
+        height: 220px;
+    }
+}
+
+@media (max-width: 480px) {
+    .used-hero-wrapper {
+        flex-direction: column;
+    }
+
+    .used-hero__image-left,
+    .used-hero__image-right {
+        position: relative;
+    }
+
+    .used-hero__image-left img,
+    .used-hero__image-right img {
+        height: 180px;
+    }
+
+    .used-hero__content {
+        padding: 20px;
+    }
+
+    .used-hero__title {
+        font-size: 1.8rem;
+    }
+
+    .used-hero__actions {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .used-btn {
+        width: 100%;
+        text-align: center;
+    }
+}
