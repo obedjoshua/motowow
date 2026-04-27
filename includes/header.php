@@ -1,8 +1,6 @@
 <?php
-// Base path for your project (IMPORTANT)
 $base = '/demo1';
 
-// Navigation pages
 $nav_pages = [
     'used'   => 'Used',
     'leased' => 'Leased',
@@ -11,12 +9,10 @@ $nav_pages = [
     'sales'  => 'Sales',
 ];
 
-// Get current page safely
 $current = basename(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '.php');
 
-// Header style logic
-$is_subpage = array_key_exists($current, $nav_pages);
-$header_class = $is_subpage ? 'main-header__home main-header__home--light' : 'main-header__home';
+$is_homepage = ($current === 'index' || $current === '');
+$header_class = $is_homepage ? 'main-header__home' : 'main-header__home main-header__home--light';
 ?>
 
 <header class="<?= $header_class ?>">
@@ -36,7 +32,6 @@ $header_class = $is_subpage ? 'main-header__home main-header__home--light' : 'ma
     <div class="hero-grid-container">
         <div class="hero-nav-menu">
 
-            <!-- ✅ FIXED LOGO PATH -->
             <div class="logo-wrapper">
                 <a href="<?= $base ?>/index.php">
                     <img src="<?= $base ?>/assets/images/logo.png" alt="motowow">
@@ -61,11 +56,90 @@ $header_class = $is_subpage ? 'main-header__home main-header__home--light' : 'ma
                     <span>Log in</span>
                 </a>
 
-                <a href="#" class="pill-btn">
-                    <svg viewBox="0 0 640 640"><path d="M96 160C96 142.3 110.3 128 128 128L512 128C529.7 128 544 142.3 544 160C544 177.7 529.7 192 512 192L128 192C110.3 192 96 177.7 96 160zM96 320C96 302.3 110.3 288 128 288L512 288C529.7 288 544 302.3 544 320C544 337.7 529.7 352 512 352L128 352C110.3 352 96 337.7 96 320zM544 480C544 497.7 529.7 512 512 512L128 512C110.3 512 96 497.7 96 480C96 462.3 110.3 448 128 448L512 448C529.7 448 544 462.3 544 480z"/></svg>
+                <a href="#site-menu" class="pill-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><path d="M96 160C96 142.3 110.3 128 128 128L512 128C529.7 128 544 142.3 544 160C544 177.7 529.7 192 512 192L128 192C110.3 192 96 177.7 96 160zM96 320C96 302.3 110.3 288 128 288L512 288C529.7 288 544 302.3 544 320C544 337.7 529.7 352 512 352L128 352C110.3 352 96 337.7 96 320zM544 480C544 497.7 529.7 512 512 512L128 512C110.3 512 96 497.7 96 480C96 462.3 110.3 448 128 448L512 448C529.7 448 544 462.3 544 480z"/></svg>
                     <span>Menu</span>
                 </a>
             </div>
+        </div>
+    </div>
+    <div class="site-menu" id="site-menu">
+        <a href="#" class="site-menu__backdrop"></a>
+        <div class="site-menu__panel">
+            <div class="site-menu__header">
+                <a href="#" class="site-menu__close">&#x2715;</a>
+            </div>
+
+            <nav class="site-menu__nav">
+
+                <div class="site-menu__item">
+                    <input type="checkbox" id="menu-used" class="menu-toggle">
+                    <label for="menu-used" class="site-menu__row">
+                        <span>Used motors</span>
+                        <svg class="menu-chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="18" height="18"><path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"/></svg>
+                    </label>
+                    <div class="site-menu__dropdown">
+                        <a href="#">Browse used motors</a>
+                        <a href="#">Used motor deals</a>
+                        <a href="#">Nearly new motors</a>
+                        <a href="#">Used motor reviews</a>
+                    </div>
+                </div>
+
+                <div class="site-menu__item">
+                    <input type="checkbox" id="menu-new" class="menu-toggle">
+                    <label for="menu-new" class="site-menu__row">
+                        <span>New motors</span>
+                        <svg class="menu-chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="18" height="18"><path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"/></svg>
+                    </label>
+                    <div class="site-menu__dropdown">
+                        <a href="#">New motor deals</a>
+                        <a href="#">New motor reviews</a>
+                        <a href="#">Compare motors</a>
+                    </div>
+                </div>
+
+                <div class="site-menu__item">
+                    <input type="checkbox" id="menu-leasing" class="menu-toggle">
+                    <label for="menu-leasing" class="site-menu__row">
+                        <span>Leasing</span>
+                        <svg class="menu-chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="18" height="18"><path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"/></svg>
+                    </label>
+                    <div class="site-menu__dropdown">
+                        <a href="#">Lease deals</a>
+                        <a href="#">How leasing works</a>
+                        <a href="#">Leasing calculator</a>
+                    </div>
+                </div>
+
+                <div class="site-menu__item">
+                    <input type="checkbox" id="menu-sell" class="menu-toggle">
+                    <label for="menu-sell" class="site-menu__row">
+                        <span>Sell my motor</span>
+                        <svg class="menu-chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="18" height="18"><path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"/></svg>
+                    </label>
+                    <div class="site-menu__dropdown">
+                        <a href="#">Get a valuation</a>
+                        <a href="#">How it works</a>
+                        <a href="#">Instant offer</a>
+                    </div>
+                </div>
+
+                <div class="site-menu__item">
+                    <input type="checkbox" id="menu-news" class="menu-toggle">
+                    <label for="menu-news" class="site-menu__row">
+                        <span>Guides and news</span>
+                        <svg class="menu-chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="18" height="18"><path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"/></svg>
+                    </label>
+                    <div class="site-menu__dropdown">
+                        <a href="#">Buying guides</a>
+                        <a href="<?= $base ?>/pages/header-pages/news.php">Motor news</a>
+                        <a href="#">Reviews</a>
+                        <a href="#">Advice</a>
+                    </div>
+                </div>
+
+            </nav>
         </div>
     </div>
 </header>
