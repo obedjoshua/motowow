@@ -1,4 +1,5 @@
 # Development Progress (Devlogs)
+## PLease update when uploading a file or a new feature
 
 ## April 19: First Draft of Homepage
 - Gathered licences for both major fonts: GT Walsheim (Professional use) & South East Cn (Personal Use)
