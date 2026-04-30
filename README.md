@@ -32,3 +32,10 @@
 - Creation of Selling guides
 - Updated footer pages
 - Updated index php to have the tabs change appearance using hidden radios
+
+
+## How to Run File
+- Download zip file of this repository
+- Downoad Laragon and run/on its servers
+- Extract the zip file can save it in C:/laragon/www/
+- then type on you browser localhost/motowow-main/index.php
