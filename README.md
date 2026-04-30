@@ -31,3 +31,4 @@
 ## April 30: Creation of additional pages
 - Creation of Selling guides
 - Updated footer pages
+- Updated index php to have the tabs change appearance using hidden radios
