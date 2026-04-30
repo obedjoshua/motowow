@@ -27,3 +27,7 @@
 - Created an additional page that is directly connected to an option in the sliding menu (advice page)
 - Created footer with corresponding pages in the lower section of the footer
 - Updated css of both header and footer file to fix the error
+
+## April 30: Creation of additional pages
+- Creation of Selling guides
+- Updated footer pages
