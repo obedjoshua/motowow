@@ -1,5 +1,13 @@
 <?php
+// Ensure the session is started if not already handled by a config file
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 $base = '/demo1';
+
+// Check if the user is logged in
+$isLoggedIn = isset($_SESSION['user_data']);
 
 $nav_pages = [
     'used'   => 'Used',
@@ -49,12 +57,23 @@ $header_class = $is_homepage ? 'main-header__home' : 'main-header__home main-hea
                     <span>Selling</span>
                 </a>
 
-                <a href="#" class="pill-btn">
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M12 12a5 5 0 1 0-0.001-10.001A5 5 0 0 0 12 12zm0 2c-4 0-8 2-8 6v2h16v-2c0-4-4-6-8-6z"/>
-                    </svg>
-                    <span>Log in</span>
-                </a>
+                <!-- Dynamic Pill Button: Notifications if logged in, Log in if not -->
+                <?php if ($isLoggedIn): ?>
+                    <a href="<?= $base ?>/pages/notifications.php" class="pill-btn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                            <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                        </svg>
+                        <span>Notifications</span>
+                    </a>
+                <?php else: ?>
+                    <a href="<?= $base ?>/auth/login.php" class="pill-btn">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 12a5 5 0 1 0-0.001-10.001A5 5 0 0 0 12 12zm0 2c-4 0-8 2-8 6v2h16v-2c0-4-4-6-8-6z"/>
+                        </svg>
+                        <span>Log in</span>
+                    </a>
+                <?php endif; ?>
 
                 <a href="#site-menu" class="pill-btn">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><path d="M96 160C96 142.3 110.3 128 128 128L512 128C529.7 128 544 142.3 544 160C544 177.7 529.7 192 512 192L128 192C110.3 192 96 177.7 96 160zM96 320C96 302.3 110.3 288 128 288L512 288C529.7 288 544 302.3 544 320C544 337.7 529.7 352 512 352L128 352C110.3 352 96 337.7 96 320zM544 480C544 497.7 529.7 512 512 512L128 512C110.3 512 96 497.7 96 480C96 462.3 110.3 448 128 448L512 448C529.7 448 544 462.3 544 480z"/></svg>
@@ -63,6 +82,7 @@ $header_class = $is_homepage ? 'main-header__home' : 'main-header__home main-hea
             </div>
         </div>
     </div>
+    
     <div class="site-menu" id="site-menu">
         <a href="#" class="site-menu__backdrop"></a>
         <div class="site-menu__panel">
@@ -139,6 +159,26 @@ $header_class = $is_homepage ? 'main-header__home' : 'main-header__home main-hea
                         <a href="<?= $base ?>/pages/sliding-menu-pages/advice.php">Advice</a>
                     </div>
                 </div>
+
+                <!-- Dynamic Account Section: Only visible if logged in -->
+                <?php if ($isLoggedIn): ?>
+                <div class="site-menu__item" style="margin-top: 15px; border-top: 1px solid #e5e7eb; padding-top: 15px;">
+                    <input type="checkbox" id="menu-account" class="menu-toggle">
+                    <label for="menu-account" class="site-menu__row" style="font-weight: bold;">
+                        <span>Your account</span>
+                        <svg class="menu-chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="18" height="18"><path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"/></svg>
+                    </label>
+                    <div class="site-menu__dropdown">
+                        <a href="#">Part exchange</a>
+                        <a href="#">Settings</a>
+                        <a href="#">Archived cars</a>
+                        <a href="#">Archived listings</a>
+                        <a href="#">Report a purchase</a>
+                        <a href="#">Communication preferences</a>
+                        <a href="<?= $base ?>/auth/logout.php" style="margin-top: 10px;">Log out</a>
+                    </div>
+                </div>
+                <?php endif; ?>
 
             </nav>
         </div>
